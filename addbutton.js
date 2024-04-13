@@ -1,6 +1,6 @@
 export class AddButton {
   constructor(appInstance) {
-    this.width = 190
+    this.width = 230
     this.height = 150
     this.x = 20
     this.y = 20
@@ -16,7 +16,6 @@ export class AddButton {
       clickX >= this.x && clickX <= this.x + this.width &&
       clickY >= this.y && clickY <= this.y + this.height
     ) {
-      console.log("Clicked on AddButton");
       this.appInstance.addNewTodo()
     }
   }
@@ -24,14 +23,15 @@ export class AddButton {
   animate(ctx) { 
     ctx.beginPath()
     ctx.roundRect(this.x, this.y, this.width, this.height, 12)
-    ctx.stroke();
+    ctx.fillStyle = "gray";
+    ctx.fill();
     ctx.closePath();
     ctx.font="20px monospace";
     ctx.fillStyle = "#000000";
-    var rectHeight = 150;
-    var rectWidth = 150;
+    var rectHeight = this.height;
+    var rectWidth = this.width;
     var rectX = 20;
     var rectY = 20;
-    ctx.fillText("Add new todo",rectX+(rectWidth/2)-50,rectY+(rectHeight/2)); 
+    ctx.fillText("Add new todo",rectX+(rectWidth/2)-76,rectY+(rectHeight/2)); 
   }
 }
