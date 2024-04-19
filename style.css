@@ -2,19 +2,44 @@
   outline: 0;
   margin: 0;
   padding: 0;
-  overflow: hidden;
 }
 html{
   width: 100%;
   height: 100%;
 }
 body {
-  background: linear-gradient(to right, black 15%, #603AF5 15%, #603AF5 44%, #F4A926 40%, #F4A926 72%, #547519 70%);
+  background: linear-gradient(to right, #0087d2 15%, #fc636b 15%, #fc636b 43%, #F4A926 40%, #F4A926 72%, #547519 70%);
   width: 100%;
   height: 100%;
   position: relative;
+  overflow: hidden;
 }
 canvas{
   width: 100%;
   height: 100%;
+}
+
+.titles {
+  position: relative;
+  z-index: 999;
+  font-family: monospace;
+  font-size: 5em;
+  font-weight: 900;
+  opacity: 60%;
+  user-select: none;
+}
+
+.title1 {
+  position: absolute; 
+  left: 15%;
+}
+
+.title2 {
+  position: absolute; 
+  left: 43%;
+}
+
+.title3 {
+  position: absolute; 
+  left: 72%;
 }
