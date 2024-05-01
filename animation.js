@@ -21,8 +21,23 @@ class App {
       this.todos[i] = new Todo(i, "Lorem ipsum sit dolor amet", randomX, randomY, false, this.canvas, this);
     }
     window.requestAnimationFrame(this.animate.bind(this));
-    this.input = new TodoInput(true)
+    this.input = new TodoInput(true, this)
     document.body.appendChild(this.canvas);
+  }
+
+  handleSave(title) { 
+    if(title.trim() === "") return
+    const todoData = {
+      id: this.todos.length,
+      title,
+      x: 50,
+      y: 50,
+      toggled: true,
+      canvas: this.canvas,
+      appInstance: this
+    }
+    this.todos.push(new Todo(...Object.values(todoData)))
+    console.log('saveeee', Object.values(todoData))
   }
 
   addNewTodo() {
