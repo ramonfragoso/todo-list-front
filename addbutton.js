@@ -1,7 +1,7 @@
 export class AddButton {
   constructor(appInstance) {
-    this.width = 230;
-    this.height = 150;
+    this.height = 190;
+    this.width = Math.round(appInstance.stageWidth*0.12);
     this.x = 20;
     this.y = 20;
     this.appInstance = appInstance;
@@ -23,6 +23,13 @@ export class AddButton {
   }
 
   animate(ctx) {
+    ctx.beginPath();
+    ctx.fillStyle = "rgba(0, 0, 0, 0.3)"; // Darker color for shadow (adjust opacity as needed)
+    ctx.rect(this.x + 5, this.y + 5, this.width, this.height); // Offset the shadow
+    ctx.fill();
+    ctx.closePath();
+
+    ctx.fillText("+", centerX, centerY);
     ctx.beginPath();
     ctx.rect(this.x, this.y, this.width, this.height);
     ctx.fillStyle = "gray";

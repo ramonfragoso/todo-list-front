@@ -1,6 +1,6 @@
 export class DeleteButton {
   constructor(appInstance) {
-    this.width = 230;
+    this.width = Math.round(appInstance.stageWidth*0.12);
     this.height = 150;
     this.x = 20;
     this.y = document.body.clientHeight - 190;
@@ -18,12 +18,18 @@ export class DeleteButton {
       clickY >= this.y &&
       clickY <= this.y + this.height
     ) {
-      console.log("Clicked on deleteButton");
       this.appInstance.deleteTodo();
     }
   }
 
   animate(ctx) {
+
+    ctx.beginPath();
+    ctx.fillStyle = "rgba(0, 0, 0, 0.3)"; // Darker color for shadow (adjust opacity as needed)
+    ctx.rect(this.x+5, this.y+5, this.width, this.height);
+    ctx.fill();
+    ctx.closePath();
+    
     ctx.beginPath();
     ctx.rect(this.x, this.y, this.width, this.height);
     ctx.font = "1.3em monospace";
