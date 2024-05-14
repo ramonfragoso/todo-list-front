@@ -21,7 +21,7 @@ class App {
       this.todos[i] = new Todo(i, "Lorem ipsum sit dolor amet", randomX, randomY, false, this.canvas, this);
     }
     window.requestAnimationFrame(this.animate.bind(this));
-    this.input = new TodoInput(true, this)
+    this.input = new TodoInput(false, this)
     document.body.appendChild(this.canvas);
   }
 
@@ -37,22 +37,15 @@ class App {
       appInstance: this
     }
     this.todos.push(new Todo(...Object.values(todoData)))
-    console.log('saveeee', Object.values(todoData))
   }
 
   addNewTodo() {
     this.input.toggle()
-    // const stageWidth = document.body.clientWidth;
-    // const stageHeight = document.body.clientHeight;
-    // const randomX = Math.random() * stageWidth;
-    // const randomY = Math.random() * stageHeight;
-    // const newTodo = new Todo(10, "Todo", randomX, randomY, true, this.canvas, this);
-    // this.todos.push(newTodo);
   }
 
-  deleteTodo() {k
+  deleteTodo(id) {
     const todos = this.todos
-    this.todos = todos.filter((todo) => !todo.toggled) 
+    this.todos = todos.filter((todo) => todo.id !== id) 
   }
 
   resize() {

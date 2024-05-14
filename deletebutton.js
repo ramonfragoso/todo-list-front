@@ -6,20 +6,6 @@ export class DeleteButton {
     this.y = document.body.clientHeight - 190;
     this.appInstance = appInstance;
     this.canvas = this.appInstance.canvas;
-    this.canvas.addEventListener("click", this.handleClick.bind(this));
-  }
-
-  handleClick(event) {
-    const clickX = event.clientX;
-    const clickY = event.clientY;
-    if (
-      clickX >= this.x &&
-      clickX <= this.x + this.width &&
-      clickY >= this.y &&
-      clickY <= this.y + this.height
-    ) {
-      this.appInstance.deleteTodo();
-    }
   }
 
   animate(ctx) {

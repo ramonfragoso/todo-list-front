@@ -41,11 +41,14 @@ export class TodoInput {
     buttonElement.style.padding = "10px 30px";
     buttonElement.style.border = "none";
     buttonElement.style.background = "#96DED1";
-    buttonElement.style.color = "#2f2f2f";
+    buttonElement.style.color = "#4f4f4f";
     buttonElement.style.outline = "none";
     buttonElement.style.borderRadius = "8px";
     buttonElement.innerText = "Save";
     buttonElement.type = "submit";
+    buttonElement.style.fontFamily = "monospace";
+    buttonElement.style.fontWeight = "bold";
+    buttonElement.style.fontSize = "16px";
     modal.appendChild(buttonElement);
 
     inputContainer.appendChild(modal);

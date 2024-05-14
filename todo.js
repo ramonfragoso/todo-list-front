@@ -11,8 +11,9 @@ export class Todo {
     this.offsetY = 0;
     this.height = 100;
     this.width = 250;
-    this.appInstance = appInstance
-    this.toggledTodoId = undefined
+    this.appInstance = appInstance;
+    this.deleteButton = appInstance.deleteButton;
+    this.toggledTodoId = undefined;
     this.canvas.addEventListener("mousemove", this.updatePosition.bind(this));
     this.canvas.addEventListener("mouseup", this.mouseUp.bind(this));
     this.canvas.addEventListener("mousedown", this.mouseDown.bind(this));
@@ -27,9 +28,17 @@ export class Todo {
       event.clientY <= this.y + this.height &&
       this.toggledTodoId === this.id
     ) {
-      console.log('herere')
       this.x += 5;
       this.y += 5;
+    }
+    if (
+      event.clientX >= this.deleteButton.x &&
+      event.clientX <= this.deleteButton.x + this.deleteButton.width &&
+      event.clientY >= this.deleteButton.y &&
+      event.clientY <= this.deleteButton.y + this.deleteButton.height &&
+      this.toggledTodoId === this.id
+    ) {
+      this.appInstance.deleteTodo(this.id)
     }
   }
 
@@ -47,7 +56,7 @@ export class Todo {
         todo.y -= 5;
         todo.offsetX = event.clientX - todo.x;
         todo.offsetY = event.clientY - todo.y;
-        this.toggledTodoId = todo.id
+        this.toggledTodoId = todo.id;
         break;
       }
     }
@@ -63,17 +72,17 @@ export class Todo {
   }
 
   splitTextIntoLines(ctx, text, maxWidth) {
-    const words = text.split(' ');
+    const words = text.split(" ");
     let lines = [];
-    let currentLine = '';
+    let currentLine = "";
 
     for (let i = 0; i < words.length; i++) {
-      const testLine = currentLine + words[i] + ' ';
+      const testLine = currentLine + words[i] + " ";
       const { width } = ctx.measureText(testLine);
 
       if (width > maxWidth) {
         lines.push(currentLine.trim());
-        currentLine = words[i] + ' ';
+        currentLine = words[i] + " ";
       } else {
         currentLine = testLine;
       }
@@ -82,7 +91,6 @@ export class Todo {
     lines.push(currentLine.trim());
     return lines;
   }
-
 
   animate(ctx) {
     const isToggled = this.toggled;
@@ -110,14 +118,15 @@ export class Todo {
     ctx.font = "1.1em monospace";
     ctx.textAlign = "left";
     ctx.textBaseline = "alphabetic";
-    var centerX = this.x + 10 ;
+    var centerX = this.x + 10;
     var centerY = this.y + this.height / 2;
     const lines = this.splitTextIntoLines(ctx, this.title, this.width - 20); // Adjusting for padding
     const lineHeight = 19; // Adjust as needed
     this.height = lines.length * lineHeight + 20; // Update todo height based on the number of lines and line height
 
     for (let i = 0; i < lines.length; i++) {
-      const lineY = centerY - (lines.length - 1) / 2 * lineHeight + i * lineHeight;
+      const lineY =
+        centerY - ((lines.length - 1) / 2) * lineHeight + i * lineHeight;
       ctx.fillText(lines[i], centerX, lineY);
     }
   }
