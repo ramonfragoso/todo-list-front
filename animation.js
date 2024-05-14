@@ -10,7 +10,7 @@ class App {
     window.addEventListener("resize", this.resize.bind(this), false);
     this.resize();
     this.todos = [];
-    this.total = 2;
+    this.total = 1;
     this.addButton = new AddButton(this);
     this.deleteButton = new DeleteButton(this);
     for (let i = 0; i < this.total; i++) {
@@ -18,7 +18,7 @@ class App {
       const stageHeight = document.body.clientHeight;
       const randomX = Math.random() * stageWidth;
       const randomY = Math.random() * stageHeight;
-      this.todos[i] = new Todo(i, "Lorem ipsum sit dolor amet", randomX, randomY, false, this.canvas, this);
+      this.todos[i] = new Todo(i, "Instructions:            1 - Click in the + button to create a new todo      2 - Click and hold to move the todos around    3 -  Drop them at the delete place to get rid of them", randomX, randomY, false, this.canvas, this);
     }
     window.requestAnimationFrame(this.animate.bind(this));
     this.input = new TodoInput(false, this)
